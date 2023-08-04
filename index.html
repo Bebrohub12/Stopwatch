@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+
+    <div>
+        <h1><span>00</span>:<span id="minutes">00</span>:<span id="seconds">00</span></h1>
+    </div>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="restart">Restart</button>
+
+    <script>
+        let min = document.getElementById("minutes");
+        let sec = document.getElementById("seconds");
+
+        let start = document.getElementById("start");
+        let stop = document.getElementById("stop");
+        let restart = document.getElementById("restart");
+
+        let addsec = 0;
+        let addmin = 0;
+
+        function count() {
+            addsec++;
+
+            if (addsec <= 9) {
+                sec.innerHTML = "0" + addsec;
+            } else {
+                sec.innerHTML = addsec;
+            }
+
+            if (addsec === 60) {
+                addsec = 0;
+                sec.innerHTML = "00";
+
+                addmin++;
+                if (addmin <= 9) {
+                    min.innerHTML = "0" + addmin;
+                }
+                else {
+                    min.innerHTML = addmin;
+                }
+            }
+        }
+
+        let x;
+
+        start.onclick = () => {
+            x = setInterval(count, 1000);
+        };
+
+        stop.onclick = () => {
+            clearInterval(x);
+        };
+
+        restart.onclick = () => {
+            clearInterval(x);
+            addsec = 0;
+            sec.innerHTML = "00";
+            min.innerHTML = "00";
+            x = setInterval(count, 1000);
+        };
+        
+
+    </script>
+
+</body>
+
+</html>
